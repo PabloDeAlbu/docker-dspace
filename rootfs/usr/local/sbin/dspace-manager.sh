@@ -215,7 +215,8 @@ rebuild_installer(){
 		[[ $DSPACE_WEBAPPS != *"oai"* ]] && MAVEN_OPTS="$MAVEN_OPTS -P-dspace-oai"
 	fi
 	
-	print_info "Packaging dspace with MAVEN_OPTS='$MAVEN_OPTS'. "
+#	print_info "Packaging dspace with MAVEN_OPTS='$MAVEN_OPTS'. "
+	print_info "Packaging dspace. "
 	print_info "Please be patient, it may take several minutes. "
 
 	sudo --login -u $DSPACE_USER <<EOF
@@ -229,7 +230,8 @@ source ~/.bashrc
 
 	# echo ejecuto `whoami` mvn package $MAVEN_OPTS
 
-	mvn package $MAVEN_OPTS
+	#mvn package $MAVEN_OPTS
+	mvn package
 
 EOF
 

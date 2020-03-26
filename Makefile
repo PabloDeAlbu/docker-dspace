@@ -18,7 +18,7 @@ update:
 
 install:
 	docker-compose -f docker-compose.yml -f others/docker-compose-debug.yml run dspace install
-	sudo chown -R $(id -u):$(id -g) data/*
+#	sudo chown -R $(id -u):$(id -g) data/*
 
 reset-db:
 	docker-compose -f docker-compose.yml -f others/docker-compose-debug.yml run dspace reset-db

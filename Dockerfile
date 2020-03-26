@@ -1,5 +1,5 @@
 # NAME:     arieljlira/dspace
-FROM tomcat:8.5-jre8-slim
+FROM tomcat:8.5-jdk11
 
 LABEL maintainer "alira@sedici.unlp.edu.ar"
 
@@ -14,8 +14,8 @@ ENV POSTGRES_DB_USER "dspace"
 ENV POSTGRES_DB_PASS "dspace"
 
 ENV DSPACE_GIT_URL=https://github.com/DSpace/DSpace
-ENV DSPACE_GIT_REVISION=dspace-6.3
-ENV DSPACE_WEBAPPS="jspui xmlui mirage2 rest oai rdf sword swordv2"
+ENV DSPACE_GIT_REVISION=master
+ENV DSPACE_WEBAPPS="api oai rest rdf server-webapp services sword swordv2"
 ENV DSPACE_ROOT_WEBAPP=""
 
 #quizás DSPACE_BASE deba ir a bashrc para no ser customizable 
@@ -30,8 +30,8 @@ ENV BOOTSTRAP_DUMP "${DSPACE_BASE}/bootstrap-dump.sql"
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7
 
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y --no-install-recommends  git openjdk-8-jdk ant maven postgresql-client  \
-	procps curl sudo gpg
+RUN apt-get install -y --no-install-recommends  git ant maven postgresql-client  
+RUN apt-get install -y --no-install-recommends	procps curl sudo gpg
 	#imagemagick ghostscript \
 	#net-tools bash-completion mlocate nano less procps apt-utils \
 	#apache2 
