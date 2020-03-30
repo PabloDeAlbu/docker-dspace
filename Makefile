@@ -14,11 +14,17 @@ update:
 	docker-compose -f docker-compose.yml -f others/docker-compose-debug.yml run dspace update
 	sudo chown -R $(id -u):$(id -g) data/*
 	@echo "Starting up containers for $(PROJECT_NAME)..."
-	docker-compose -f docker-compose.yml -f others/docker-compose-debug.yml up -d
+	docker-compose -f docker-compose.yml -f othrs/docker-compose-debug.yml up -d
 
 install:
 	docker-compose -f docker-compose.yml -f others/docker-compose-debug.yml run dspace install
 #	sudo chown -R $(id -u):$(id -g) data/*
+
+install-angular:
+	docker-compose -f docker-compose.yml run dspace-angular install
+
+start-angular:
+	docker-compose -f docker-compose.yml run dspace-angular start
 
 reset-db:
 	docker-compose -f docker-compose.yml -f others/docker-compose-debug.yml run dspace reset-db

@@ -1,0 +1,21 @@
+FROM node:12
+
+RUN yarn install --network-timeout 300000
+CMD yarn run watch
+ENV DSPACE_ANGULAR_GIT_URL=https://github.com/DSpace/dspace-angular
+ENV DSPACE_ANGULAR_GIT_REVISION=master
+
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y --no-install-recommends  git less nano
+
+RUN mkdir -p /app/dspace-angular
+WORKDIR /app/dspace-angular
+
+# Install root filesystem
+COPY rootfs /
+
+VOLUME /app
+
+EXPOSE 8080
+CMD ["start"]
+ENTRYPOINT ["dspace-angular-manager.sh"]
